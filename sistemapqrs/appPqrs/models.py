@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+#1###
 class Oficina(models.Model):
     ofiNombre=models.CharField(max_length=50)
     def __str__ (self):
             return self.ofiNombre
-
-
+#2###
 class Empleados(models.Model):
     empIdentificacion=models.CharField(max_length=10,unique=True)
     empNombres=models.CharField(max_length=50)
@@ -21,9 +21,7 @@ class TipoUsuario(models.TextChoices):
     Administrador = 'Administrador', 'Administrador'
     Empleado = 'Empleado', 'Empleado'
 
-
-
-
+#3
 class Usuario(AbstractUser):
     # usuEmpleado = models.ForeignKey(Empleados, on_delete=models.PROTECT)
     useFoto=models.ImageField(upload_to='fotosusuario',null=True,blank=True)
@@ -50,7 +48,7 @@ class solEstado(models.TextChoices):
     Solicitada= 'Solicitada','Solicitada'
     Atendida  = 'Atendidad','Atendida'
     
-
+#4
 class Solicitud(models.Model):
     solCodigo=models.CharField(max_length=20,unique=True)
     solForma=models.CharField(max_length=20,choices=SolForma,default=SolForma.Correo_Electronico)
@@ -64,13 +62,15 @@ class Solicitud(models.Model):
     solEstado=models.CharField(max_length=20,choices=solEstado,default=solEstado.Solicitada)
     def __str__ (self):
             return self.solCodigo
-    
+
+#5
 class AnexoSolicitudes(models.Model):
     aneSolicitud=models.ForeignKey(Solicitud, on_delete=models.PROTECT)
     aneUrl=models.FileField(upload_to='anexos/',null = True, blank = True)
     def __str__ (self):
             return self.aneUrl
-    
+
+#6
 class RespuestSolicitud(models.Model):
     resSolicitud=models.ForeignKey(Solicitud, on_delete=models.PROTECT)
     resDescripcion=models.TextField()

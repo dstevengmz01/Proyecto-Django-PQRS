@@ -1,0 +1,16 @@
+{% extends 'inicio.html' %}
+{% load static %} 
+{% block titulo %} Agregar Empleado
+{% endblock titulo %}
+ {% block contenido %}
+<div>
+  <h1>AGREGE UNA EMPLEADO</h1>
+  <form action="" method="POST"  id="form-empleado" enctype="multypart/form-data">
+    {% csrf_token %} 
+    {{ formulario.as_p }}
+    <input type="submit" value="Agregar_empleado" />
+  </form>
+</div>
+    <script src="{% static 'js/index.js' %}"></script>
+
+{%endblock%}

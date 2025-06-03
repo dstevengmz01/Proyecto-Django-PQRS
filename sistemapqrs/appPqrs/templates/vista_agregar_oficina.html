@@ -1,0 +1,16 @@
+{% extends 'inicio.html' %}
+{% load static %} 
+{% block titulo %} Agregar Oficina
+{% endblock titulo %}
+ {% block contenido %}
+<div>
+  <h1>AGREGE UNA OFICINA</h1>
+  <form action="" method="POST"  id="form-oficina" enctype="multypart/form-data">
+    {% csrf_token %} 
+    {{ formulario.as_p }}
+    <input type="submit" value="Agregar_oficina" />
+  </form>
+</div>
+    <script src="{% static 'js/index.js' %}"></script>
+
+{%endblock%}

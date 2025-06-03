@@ -1,0 +1,40 @@
+{% extends 'inicio.html' %}
+{% load static %} 
+{% block titulo %} Agregar Solicitud
+{% endblock titulo %}
+ {% block contenido %}
+<div>
+  <h1>AGREGE UNA SOLICITUD</h1>
+  <form action="" method="POST"  id="form-solicitud" enctype="multypart/form-data">
+    {% csrf_token %}
+      <br>
+      <label >Codigo de Peticion : {{ formulario.solCodigo }}</label>
+      <br>
+      <label >Tipo solicitud</label>
+      {{ formulario.solForma }}
+      <br>
+      <label> Tipo de Peticion : {{ formulario.solTipo }}</label>
+      <br>
+      <label>Oficina : {{ formulario.solOficina }}</label>
+      <br>
+     <label for="campo-barrio">Barrio</label>
+      <select id="campo-barrio" name="solBarrio" class="form-control">
+        <option value="">Cargando barrios</option>
+      </select>
+      <br>
+      <label for=>Nombre Completo : {{formulario.solNombreCiudadano}}</label>
+      <br>
+      <label for=>Correo Electronico : {{formulario.solCorreoElectronico}}</label>
+      <br>
+      <label >Descripción : {{formulario.solDescripcion}}</label>
+      <br>
+      <label for="">Fecha : {{ formulario.solFecha }}</label>
+      <br>
+      <label for=""> Estado : {{ formulario.solEstado }}</label>
+      <br>
+    <input type="submit" value="Agregar_solicitud" />
+  </form>
+</div>
+    <script src="{% static 'js/index.js' %}"></script>
+
+{%endblock%}
