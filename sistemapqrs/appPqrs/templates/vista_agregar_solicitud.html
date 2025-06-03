@@ -1,40 +1,57 @@
-{% extends 'inicio.html' %}
-{% load static %} 
-{% block titulo %} Agregar Solicitud
-{% endblock titulo %}
- {% block contenido %}
+{% extends 'inicio.html' %} {% load static %} {% block titulo %} Agregar
+Solicitud {% endblock titulo %} {% block contenido %}
 <div>
   <h1>AGREGE UNA SOLICITUD</h1>
-  <form action="" method="POST"  id="form-solicitud" enctype="multypart/form-data">
+  <form
+    action=""
+    method="POST"
+    id="form-solicitud"
+    enctype="multipart/form-data"
+  >
     {% csrf_token %}
-      <br>
-      <label >Codigo de Peticion : {{ formulario.solCodigo }}</label>
-      <br>
-      <label >Tipo solicitud</label>
-      {{ formulario.solForma }}
-      <br>
-      <label> Tipo de Peticion : {{ formulario.solTipo }}</label>
-      <br>
-      <label>Oficina : {{ formulario.solOficina }}</label>
-      <br>
-     <label for="campo-barrio">Barrio</label>
-      <select id="campo-barrio" name="solBarrio" class="form-control">
-        <option value="">Cargando barrios</option>
-      </select>
-      <br>
-      <label for=>Nombre Completo : {{formulario.solNombreCiudadano}}</label>
-      <br>
-      <label for=>Correo Electronico : {{formulario.solCorreoElectronico}}</label>
-      <br>
-      <label >Descripción : {{formulario.solDescripcion}}</label>
-      <br>
-      <label for="">Fecha : {{ formulario.solFecha }}</label>
-      <br>
-      <label for=""> Estado : {{ formulario.solEstado }}</label>
-      <br>
+    <br />
+    <label>Codigo de Peticion : {{ formulario.solCodigo }}</label>
+    <br />
+    <label for="id_solForma">Tipo de Forma</label>
+    <select name="solForma" id="id_solForma" class="form-control">
+      <option value="">Seleccione...</option>
+      <option value="anonimo">Anónima</option>
+      <option value="correoelectronico">Correo Electrónico</option>
+    </select>
+    <br />
+    <label> Tipo de Peticion : {{ formulario.solTipo }}</label>
+    <br />
+    <label>Oficina : {{ formulario.solOficina }}</label>
+    <br />
+    <label for="campo-barrio">Barrio</label>
+    <select id="campo-barrio" name="solBarrio" class="form-control">
+      <option value="">Cargando barrios</option>
+    </select>
+    <br />
+    <div id="selecciones">
+      <label for="id_solNombreCiudadano">Nombre</label>
+      <input
+        type="text"
+        name="solNombreCiudadano"
+        id="id_solNombreCiudadano"
+        class="form-control"
+      />
+      <br />
+      <label for="id_solCorreoElectronico">Correo</label>
+      <input
+        type="email"
+        name="solCorreoElectronico"
+        id="id_solCorreoElectronico"
+        class="form-control"
+      />
+      <br />
+      <br />
+      <label> Estado : {{ formulario.solEstado }}</label>
+      <br />
+    </div>
     <input type="submit" value="Agregar_solicitud" />
   </form>
 </div>
-    <script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 
 {%endblock%}

@@ -26,7 +26,7 @@ class agregar_solicitud_form(forms.ModelForm):
 	solNombreCiudadano = forms.CharField(max_length=50, required=False, label='Nombre del Ciudadano')
 	solCorreoElectronico = forms.EmailField(max_length=50, required=False, label='Correo Electrónico')
 	solDescripcion = forms.CharField(widget=forms.Textarea, required=True, label='Descripción de la Solicitud')
-	solFecha=forms.DateField(widget=forms.SelectDateWidget, required=False, label='Fecha de Solicitud')
+	#Campo de la fecha
 	solEstado = forms.ChoiceField(choices=solEstado.choices, initial=solEstado.Solicitada, required=True, label='Estado de la Solicitud')
 	class Meta:
 		model= Solicitud
