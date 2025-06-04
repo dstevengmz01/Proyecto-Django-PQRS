@@ -2,55 +2,41 @@
 Solicitud {% endblock titulo %} {% block contenido %}
 <div>
   <h1>AGREGE UNA SOLICITUD</h1>
-  <form
-    action=""
-    method="POST"
-    id="form-solicitud"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %}
-    <br />
-    <label>Codigo de Peticion : {{ formulario.solCodigo }}</label>
-    <br />
-    <label for="id_solForma">Tipo de Forma</label>
-    <select name="solForma" id="id_solForma" class="form-control">
-      <option value="">Seleccione...</option>
-      <option value="anonimo">Anónima</option>
-      <option value="correoelectronico">Correo Electrónico</option>
-    </select>
-    <br />
-    <label> Tipo de Peticion : {{ formulario.solTipo }}</label>
-    <br />
-    <label>Oficina : {{ formulario.solOficina }}</label>
-    <br />
-    <label for="campo-barrio">Barrio</label>
-    <select id="campo-barrio" name="solBarrio" class="form-control">
-      <option value="">Cargando barrios</option>
-    </select>
-    <br />
-    <div id="selecciones">
-      <label for="id_solNombreCiudadano">Nombre</label>
-      <input
-        type="text"
-        name="solNombreCiudadano"
-        id="id_solNombreCiudadano"
-        class="form-control"
-      />
-      <br />
-      <label for="id_solCorreoElectronico">Correo</label>
-      <input
-        type="email"
-        name="solCorreoElectronico"
-        id="id_solCorreoElectronico"
-        class="form-control"
-      />
-      <br />
-      <br />
-      <label> Estado : {{ formulario.solEstado }}</label>
-      <br />
-    </div>
-    <input type="submit" value="Agregar_solicitud" />
-  </form>
+  <form method="POST" id="form-solicitud" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <p><strong>Código de Solicitud:</strong> {{ formulario.solCodigo }}</p>
+
+  <label>Forma de la Petición:</label>
+  {{ formulario.solForma }}
+
+  <label>Tipo de Petición:</label>
+  {{ formulario.solTipo }}
+
+  <label>Oficina de PQRS:</label>
+  {{ formulario.solOficina }}
+
+  <label for="campo-barrio">Barrio:</label>
+  <select id="campo-barrio" name="solBarrio" class="form-control">
+    <option value="">Cargando barrios...</option>
+  </select>
+
+  <div id="selecciones">
+    <label>Nombre:</label>
+    {{ formulario.solNombreCiudadano }}
+
+    <label>Correo:</label>
+    {{ formulario.solCorreoElectronico }}
+
+    <label>Descripción:</label>
+    {{ formulario.solDescripcion }}
+  </div>
+
+  {{ formulario.solEstado }}
+
+  <input type="submit" value="Agregar Solicitud" />
+</form>
+
 </div>
 <script src="{% static 'js/index.js' %}"></script>
 

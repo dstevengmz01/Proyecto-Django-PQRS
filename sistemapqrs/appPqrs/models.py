@@ -57,7 +57,7 @@ class Solicitud(models.Model):
     solBarrio=models.CharField(max_length=50,blank=True)
     solNombreCiudadano=models.CharField(max_length=50,blank=True,null = True)
     solCorreoElectronico=models.CharField(max_length=50,blank=True,null = True)
-    solDescripcion=models.TextField()
+    solDescripcion=models.TextField(blank=True)
     solFecha=models.DateField(auto_now_add=True)
     solEstado=models.CharField(max_length=20,choices=solEstado,default=solEstado.Solicitada)
     def __str__ (self):

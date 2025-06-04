@@ -30,6 +30,9 @@ function solicitudagregar() {
         alert("Solicitud agregado con éxito!");
       });
     }
+    else{
+      console.error("Formulario de solicitud no encontrado");
+    }
   });
 }
 solicitudagregar();
@@ -60,22 +63,35 @@ function BarriosApi() {
 }
 BarriosApi();
 
+
+function GuardarDatosSeleccionados(){
+  
 document.addEventListener("DOMContentLoaded", function () {
-  const tipoSelect = document.getElementById("id_solForma");
-  const camposIdentidad = document.getElementById("selecciones");
+const tipoSelect = document.getElementById("id_solForma");
+const camposIdentidad = document.getElementById("selecciones");
   function actualizarFormulario() {
     const valor = tipoSelect.value;
-    if (valor === "anonimo") {
+
+    if (valor === "Anonimo") {
       camposIdentidad.style.display = "none";
-      document.getElementById("id_solNombreCiudadano").value = "";
-      document.getElementById("id_solCorreoElectronico").value = "";
-    } else if (valor === "correoelectronico") {
-      camposIdentidad.style.display = "block";
+      const nombre = document.getElementById("id_solNombreCiudadano");
+      const correo = document.getElementById("id_solCorreoElectronico");
+      const descripcion = document.getElementById("id_solDescripcion");
+
+      if (nombre) nombre.value = "";
+      if (correo) correo.value = "";
+      if (descripcion) descripcion.value = "";
     } else {
-      camposIdentidad.style.display = "none";
+      camposIdentidad.style.display = "block";
     }
   }
 
-  tipoSelect.addEventListener("change", actualizarFormulario);
-  actualizarFormulario();
+  if (tipoSelect) {
+    tipoSelect.addEventListener("change", actualizarFormulario);
+    actualizarFormulario();
+  } else {
+    console.error("No se encontró el campo 'solForma'");
+  }
 });
+}
+GuardarDatosSeleccionados();
