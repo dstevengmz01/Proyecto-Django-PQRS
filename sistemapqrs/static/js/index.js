@@ -65,7 +65,6 @@ BarriosApi();
 
 
 function GuardarDatosSeleccionados(){
-  
 document.addEventListener("DOMContentLoaded", function () {
 const tipoSelect = document.getElementById("id_solForma");
 const camposIdentidad = document.getElementById("selecciones");
@@ -76,11 +75,9 @@ const camposIdentidad = document.getElementById("selecciones");
       camposIdentidad.style.display = "none";
       const nombre = document.getElementById("id_solNombreCiudadano");
       const correo = document.getElementById("id_solCorreoElectronico");
-      const descripcion = document.getElementById("id_solDescripcion");
 
       if (nombre) nombre.value = "";
       if (correo) correo.value = "";
-      if (descripcion) descripcion.value = "";
     } else {
       camposIdentidad.style.display = "block";
     }

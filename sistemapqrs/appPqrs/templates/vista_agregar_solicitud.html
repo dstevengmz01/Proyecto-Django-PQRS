@@ -28,11 +28,14 @@ Solicitud {% endblock titulo %} {% block contenido %}
     <label>Correo:</label>
     {{ formulario.solCorreoElectronico }}
 
-    <label>Descripción:</label>
-    {{ formulario.solDescripcion }}
+   
   </div>
-
-  {{ formulario.solEstado }}
+  <br>
+   <label>Descripción:</label>
+    {{ formulario.solDescripcion }}
+    <br>
+  <!-- {{ formulario.solEstado }} -->
+    <input type="hidden" name="solEstado" value="Solicitada">
 
   <input type="submit" value="Agregar Solicitud" />
 </form>
