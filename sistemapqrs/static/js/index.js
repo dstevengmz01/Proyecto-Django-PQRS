@@ -29,8 +29,7 @@ function solicitudagregar() {
       formularioSolicitud.addEventListener("submit", function () {
         alert("Solicitud agregado con éxito!");
       });
-    }
-    else{
+    } else {
       console.error("Formulario de solicitud no encontrado");
     }
   });
@@ -63,32 +62,28 @@ function BarriosApi() {
 }
 BarriosApi();
 
-
-function GuardarDatosSeleccionados(){
-document.addEventListener("DOMContentLoaded", function () {
-const tipoSelect = document.getElementById("id_solForma");
-const camposIdentidad = document.getElementById("selecciones");
-  function actualizarFormulario() {
-    const valor = tipoSelect.value;
-
-    if (valor === "Anonimo") {
-      camposIdentidad.style.display = "none";
-      const nombre = document.getElementById("id_solNombreCiudadano");
-      const correo = document.getElementById("id_solCorreoElectronico");
-
-      if (nombre) nombre.value = "";
-      if (correo) correo.value = "";
-    } else {
-      camposIdentidad.style.display = "block";
+function GuardarDatosSeleccionados() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const tipoSelect = document.getElementById("id_solForma");
+    const camposIdentidad = document.getElementById("selecciones");
+    function actualizarFormulario() {
+      const valor = tipoSelect.value;
+      if (valor === "Anonimo") {
+        camposIdentidad.style.display = "none";
+        const nombre = document.getElementById("id_solNombreCiudadano");
+        const correo = document.getElementById("id_solCorreoElectronico");
+        if (nombre) nombre.value = "";
+        if (correo) correo.value = "";
+      } else {
+        camposIdentidad.style.display = "block";
+      }
     }
-  }
-
-  if (tipoSelect) {
-    tipoSelect.addEventListener("change", actualizarFormulario);
-    actualizarFormulario();
-  } else {
-    console.error("No se encontró el campo 'solForma'");
-  }
-});
+    if (tipoSelect) {
+      tipoSelect.addEventListener("change", actualizarFormulario);
+      actualizarFormulario();
+    } else {
+      console.error("No se encontró el campo 'solForma'");
+    }
+  });
 }
 GuardarDatosSeleccionados();

@@ -26,3 +26,9 @@ class agregar_solicitud_form(forms.ModelForm):
 			'solCorreoElectronico': forms.EmailInput(attrs={'id': 'id_solCorreoElectronico'}),
 			'solDescripcion': forms.Textarea(attrs={'id': 'id_solDescripcion'}),
 		}
+
+class agregar_anexoSolicitudes_form(forms.ModelForm):
+    class Meta:
+        model = AnexoSolicitudes
+        fields = ['aneUrl']
+		
