@@ -6,8 +6,10 @@
 <div>
   <h1>AGREGE UNA EMPLEADO</h1>
   <form action="" method="POST"  id="form-empleado" enctype="multypart/form-data">
-    {% csrf_token %} 
+    {% csrf_token %}
     {{ formulario.as_p }}
+    <!-- <p><strong>Código de Empleado:</strong> {{ formulario.empIdentificacion }}</p> -->
+    <!-- {{ formulario.as_p }} -->
     <input type="submit" value="Agregar_empleado" />
   </form>
 </div>

@@ -1,0 +1,16 @@
+{% extends 'inicio.html' %}
+{% load static %} 
+{% block titulo %} Agregar Usuario
+{% endblock titulo %}
+ {% block contenido %}
+<div>
+  <h1>AGREGE UN USUARIO</h1>
+  <form action="" method="POST"  id="form-usuario" enctype="multypart/form-data">
+    {% csrf_token %} 
+    {{ formulario.as_p }}
+    <input type="submit" value="Agregar_usuario" />
+  </form>
+</div>
+    <script src="{% static 'js/index.js' %}"></script>
+
+{%endblock%}

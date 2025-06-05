@@ -48,7 +48,7 @@ class solEstado(models.TextChoices):
     Solicitada= 'Solicitada','Solicitada'
     Atendida  = 'Atendidad','Atendida'
     
-#4
+###4
 class Solicitud(models.Model):
     solCodigo=models.CharField(max_length=20,unique=True)
     solForma=models.CharField(max_length=20,choices=SolForma,default=SolForma.Correo_Electronico)
@@ -63,7 +63,7 @@ class Solicitud(models.Model):
     def __str__ (self):
             return self.solCodigo
 
-#5
+####5
 class AnexoSolicitudes(models.Model):
     aneSolicitud=models.ForeignKey(Solicitud, on_delete=models.PROTECT)
     aneUrl=models.FileField(upload_to='anexos/',null = True, blank = True)

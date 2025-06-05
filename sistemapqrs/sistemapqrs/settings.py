@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gestionpqrs',
         'USER':'root',
-        'PASSWORD':'sena',
+        'PASSWORD':'Darwinlds10#',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -135,3 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Para que se utilice el modelo los usuarios la clase llamada usuarios;
 #cuando no tiene nada se usa el user de Django por defecto
 AUTH_USER_MODEL='appPqrs.Usuario'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'

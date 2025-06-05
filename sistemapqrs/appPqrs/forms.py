@@ -1,5 +1,9 @@
 from django import forms
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import get_user_model
+
 
 # Formulario para agregar una oficina
 class agregar_oficina_form(forms.ModelForm):
@@ -9,13 +13,17 @@ class agregar_oficina_form(forms.ModelForm):
 
 # Formulario para agregar un empleado
 class agregar_empleado_form(forms.ModelForm):
-	class Meta:
-		model = Empleados
-		fields = '__all__'
+      empIdentificacion = forms.CharField(
+		label='Código de Empleado',
+		widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+      class Meta:
+        model = Empleados
+        fields = '__all__'
+		
 		
 # Formulario para agregar una solicitud
 class agregar_solicitud_form(forms.ModelForm):
-	solCodigo = forms.CharField(
+	solCodigo  = forms.CharField(
 		label='Código de Solicitud',
 		widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 	class Meta:
@@ -32,3 +40,19 @@ class agregar_anexoSolicitudes_form(forms.ModelForm):
         model = AnexoSolicitudes
         fields = ['aneUrl']
 		
+#Usuario Formulario
+class Registro_usuario_form(UserCreationForm):
+    class Meta:
+        model = Usuario
+		# fields = '__all__'
+        fields = ['username', 'password1', 'password2', 'email', 'useFoto', 'usuEmpleado', 'usoTipo']
+
+
+# Formulario de autenticación
+class Login_form(AuthenticationForm):
+    username = forms.CharField(label="Usuario", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="Contraseña", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'password']

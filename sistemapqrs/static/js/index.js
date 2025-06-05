@@ -87,3 +87,15 @@ function GuardarDatosSeleccionados() {
   });
 }
 GuardarDatosSeleccionados();
+
+
+function usuarioagregar() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const formularioEmpleado = document.getElementById("form-usuario");
+    if (formularioEmpleado) {
+      formularioEmpleado.addEventListener("submit", function () {
+        alert("Empleado agregado con éxito!");
+      });
+    }
+  });
+}

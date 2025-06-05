@@ -1,0 +1,26 @@
+{% extends 'inicio.html' %}
+{% block titulo %}Panel de Empleado{% endblock %}
+
+{% block contenido %}
+<div class="container">
+  <h1>Hola {{ empleado.empNombres }} {{ empleado.empApellidos }}</h1>
+  <p>Bienvenido a tu panel de usuario.</p>
+
+  <h2>Solicitudes de tu oficina: {{ empleado.empOficina.ofiNombre }}</h2>
+
+  {% if solicitudes %}
+    <ul>
+      {% for solicitud in solicitudes %}
+        <li>
+          Código: {{ solicitud.solCodigo }} - 
+          Tipo: {{ solicitud.solTipo }} - 
+          Estado: {{ solicitud.solEstado }} - 
+          Fecha: {{ solicitud.solFecha }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay solicitudes para esta oficina.</p>
+  {% endif %}
+</div>
+{% endblock %}

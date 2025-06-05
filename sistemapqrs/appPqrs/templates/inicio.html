@@ -30,25 +30,40 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- TEMPORAL PARA DEPURAR -->
+          <p style="color: white;">Usuario tipo: {{ request.user.usoTipo }}</p>
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'inicio' %}">INICIO</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'vista_agregar_oficina' %}"
-                >AGG_OFICINA</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'vista_agregar_empleado' %}"
-                >AGG_EMPLEADO</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'vista_agregar_solicitud' %}"
-                >AGG_SOLICITUD</a
-              >
-            </li>
+                <a class="nav-link" href="{% url 'vista_agregar_solicitud' %}">AGG_SOLICITUD</a>
+              </li>
+            {% if request.user.is_authenticated and request.user.usoTipo == 'Administrador' %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'vista_agregar_oficina' %}">AGG_OFICINA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'vista_agregar_empleado' %}">AGG_EMPLEADO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'vista_agregar_solicitud' %}">AGG_SOLICITUD</a>
+              </li>
+            {% endif %}
+          </ul>
+           <ul class="navbar-nav">
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <form method="post" action="{% url 'vista_logout' %}">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-light" type="submit">Cerrar sesión</button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>
