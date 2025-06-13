@@ -1,0 +1,31 @@
+{% extends 'inicio.html' %}
+{% block titulo %}Consultar Respuesta{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+  <h2>Consultar Respuesta a tu Solicitud</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="codigo" class="form-label">Código de Solicitud:</label>
+      <input type="text" name="codigo" id="codigo" class="form-control" value="{{ codigo }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
+  {% if solicitud %}
+    <hr>
+    <h4>Resultado para el código: {{ solicitud.solCodigo }}</h4>
+    <p><strong>Tipo:</strong> {{ solicitud.solTipo }}</p>
+    <p><strong>Estado:</strong> {{ solicitud.solEstado }}</p>
+
+    {% if respuesta %}
+      <a href="{{ respuesta.resUrlAnexo.url }}" class="btn btn-success" target="_blank">Descargar Respuesta en PDF</a>
+    {% else %}
+      <p class="text-danger">Aún no hay una respuesta disponible.</p>
+    {% endif %}
+  {% elif codigo %}
+    <p class="text-danger mt-3">No se encontró ninguna solicitud con ese código.</p>
+  {% endif %}
+</div>
+{% endblock %}

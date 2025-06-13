@@ -74,7 +74,7 @@ class AnexoSolicitudes(models.Model):
 class RespuestSolicitud(models.Model):
     resSolicitud=models.ForeignKey(Solicitud, on_delete=models.PROTECT)
     resDescripcion=models.TextField()
-    resUrlAnexo=models.FileField(upload_to='Anexossolicitudes/')
+    resUrlAnexo=models.FileField(upload_to='Anexossolicitudes/',null = True, blank = True)
     resFecha=models.DateField(auto_now_add=True)
     resEmpleado=models.ForeignKey(Empleados, on_delete=models.PROTECT)
     def __str__ (self):

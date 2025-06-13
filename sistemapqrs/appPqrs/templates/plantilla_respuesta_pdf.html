@@ -1,0 +1,20 @@
+_<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Respuesta a la Solicitud</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    h2 { text-align: center; }
+  </style>
+</head>
+<body>
+  <h2>Respuesta a la Solicitud {{ solicitud.solCodigo }}</h2>
+  <p><strong>Fecha:</strong> {{ respuesta.resFecha|date:"d/m/Y" }}</p>
+  <p><strong>Ciudadano:</strong> {{ solicitud.solNombreCiudadano }}</p>
+  <p><strong>Descripción de la Respuesta:</strong></p>
+  <p>{{ respuesta.resDescripcion }}</p>
+  <hr>
+  <p><strong>Atentamente,</strong><br>{{ empleado.empNombres }} {{ empleado.empApellidos }}</p>
+</body>
+</html>

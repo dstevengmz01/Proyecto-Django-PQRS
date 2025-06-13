@@ -10,4 +10,8 @@ urlpatterns = [
     path('login/', views.VistaLogin.as_view(), name='login'),
     path('logout/',views.vista_logout,name="vista_logout"),
     path('panel/', views.panel_empleado, name='panel_empleado'),
+    path('panel_administrador/', views.admin, name='panel_administrador'),
+    path('responder/<int:solicitud_id>/', views.responder_solicitud, name='responder_solicitud'),
+    path('consultarrespuesta/', views.consultar_respuesta, name='consultar_respuesta'),
+    
 ]

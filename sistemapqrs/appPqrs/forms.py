@@ -56,3 +56,12 @@ class Login_form(AuthenticationForm):
     class Meta:
         model = get_user_model()
         fields = ['username', 'password']
+        
+class respuesta_Solicitud_form(forms.ModelForm):
+    class Meta:
+        model = RespuestSolicitud
+        fields = ['resDescripcion', 'resUrlAnexo']
+        widgets = {
+            'resDescripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'resUrlAnexo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }

@@ -5,20 +5,73 @@
 <div class="container">
   <h1>Hola {{ empleado.empNombres }} {{ empleado.empApellidos }}</h1>
   <p>Bienvenido a tu panel de usuario.</p>
-
   <h2>Solicitudes de tu oficina: {{ empleado.empOficina.ofiNombre }}</h2>
 
+  <form method="GET" action="{% url 'panel_empleado' %}" class="mb-4">
+  <label for="tipo" class="form-label">🔍 Filtrar por tipo de solicitud:</label>
+  <select name="tipo" id="tipo" class="form-select w-25 d-inline" onchange="this.form.submit()">
+    <option value="">-- Todas --</option>
+    <option value="Peticion" {% if request.GET.tipo == "Peticion" %}selected{% endif %}>Petición</option>
+    <option value="Queja" {% if request.GET.tipo == "Queja" %}selected{% endif %}>Queja</option>
+    <option value="Reclamo" {% if request.GET.tipo == "Reclamo" %}selected{% endif %}>Reclamo</option>
+  </select>
+</form>
+
+  <form method="GET" action="{% url 'panel_empleado' %}" class="mb-4">
+  <label for="forma" class="form-label">🔍 Filtrar por forma de solicitud:</label>
+  <select name="forma" id="forma" class="form-select w-25 d-inline" onchange="this.form.submit()">
+    <option value="">-- Todas --</option>
+    <option value="Anonimo" {% if request.GET.forma == "Anonimo" %}selected{% endif %}>Anonimo</option>
+    <option value="Correo Electronico" {% if request.GET.forma == "Correo Electronico" %}selected{% endif %}>Correo Electronico</option>
+  </select>
+</form>
+
+
   {% if solicitudes %}
-    <ul>
-      {% for solicitud in solicitudes %}
-        <li>
-          Código: {{ solicitud.solCodigo }} - 
-          Tipo: {{ solicitud.solTipo }} - 
-          Estado: {{ solicitud.solEstado }} - 
-          Fecha: {{ solicitud.solFecha }}
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Forma</th>
+            <th>Estado</th>
+            <th>Barrio</th>
+            <th>Fecha</th>
+            <th>PDF</th>
+            <th>Respomder xd</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in solicitudes %}
+          <tr>
+            <td>{{ item.solicitud.solCodigo }}</td>
+            <td>{{ item.solicitud.solTipo }}</td>
+            {% if item.solicitud.solEstado == 'Atendida' %}
+            <td style="color: red">{{ item.solicitud.solEstado }}</td>
+            {%else%}
+            <td>{{ item.solicitud.solEstado }}</td>
+            {% endif %}
+            <td>{{ item.solicitud.solForma }}</td>
+            <td>{{ item.solicitud.solBarrio }}</td>
+            <td>{{ item.solicitud.solFecha }}</td>
+            <td>
+              {% if item.anexos %}
+                {% for anexo in item.anexos %}
+                  <a href="{{ anexo.aneUrl.url }}" class="btn btn-sm btn-outline-primary" target="_blank">Ver PDF</a><br>
+                {% endfor %}
+              {% else %}
+                <span class="text-muted">Sin PDF</span>
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'responder_solicitud' item.solicitud.id %}" class="btn btn-sm btn-success">Responder</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   {% else %}
     <p>No hay solicitudes para esta oficina.</p>
   {% endif %}
