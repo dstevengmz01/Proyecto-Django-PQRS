@@ -242,25 +242,6 @@ def consultar_respuesta(request):
 
 # ##################
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def generar_pdf_respuesta(contexto):
     html = render_to_string("plantilla_respuesta_pdf.html", contexto)
     resultado = BytesIO()
@@ -268,11 +249,6 @@ def generar_pdf_respuesta(contexto):
     if not pdf.err:
         return resultado.getvalue()
     return None
-
-
-
-
-
 
 @login_required
 def responder_solicitud(request, solicitud_id):
@@ -297,6 +273,11 @@ def responder_solicitud(request, solicitud_id):
             respuesta.save()
             solicitud.solEstado = 'Atendida'
             solicitud.save()
+            asunto = 'Solicitud atendida'
+            mensaje = f"""
+            Se ha respondido a su solicitud, su codigo para consultar su solicitud es {solicitud.solCodigo}.<br>
+            """
+            enviar_correo_asincrono(solicitud.solCorreoElectronico, asunto, mensaje)
             return redirect('panel_empleado')
     else:
         form = respuesta_Solicitud_form()
